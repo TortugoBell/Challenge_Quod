@@ -1,0 +1,55 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string"
+    },
+    "transacaoId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "tipoBiometria": {
+      "type": "string",
+      "enum": ["facial"]
+    },
+    "fraudeDetectada": {
+      "type": "boolean"
+    },
+    "tipoFraude": {
+      "type": ["string", "null"],
+      "enum": ["deepfake", "máscara", "foto de foto", null]
+    },
+    "dataCaptura": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "dispositivo": {
+      "type": "object",
+      "properties": {
+        "fabricante": {
+          "type": "string"
+        },
+        "modelo": {
+          "type": "string"
+        },
+        "sistemaOperacional": {
+          "type": "string"
+        }
+      },
+      "required": ["fabricante", "modelo", "sistemaOperacional"]
+    },
+    "metadados": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "required": [
+    "transacaoId",
+    "tipoBiometria",
+    "fraudeDetectada",
+    "dataCaptura",
+    "dispositivo",
+    "metadados"
+  ]
+}
